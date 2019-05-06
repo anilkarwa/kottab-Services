@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KOTTabModal.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="AuthenticateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="FoodAreaList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tableId" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="ItemMenuGroups" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="KOTCATList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="KOTCounterList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="OccupiedTableList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PaymentTableList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SearchItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ItemName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="tableId" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="itemGroupId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SearchOccupiedTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="term" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SearchPaymentables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="term" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SearchVacantTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="term" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UpdateTableStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TableId" Type="int" Mode="In" />
+          <Parameter Name="TableStatus" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="VacantTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="WaiterList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="KOTTabModalStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="KOTTabModal" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="KOTTabModalContainer" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="VacantTables" ReturnType="Collection(KOTTabModal.VacantTables_Result)" />
+          <FunctionImport Name="OccupiedTableList" ReturnType="Collection(KOTTabModal.OccupiedTableList_Result)" />
+          <FunctionImport Name="PaymentTableList" ReturnType="Collection(KOTTabModal.PaymentTableList_Result)" />
+          <FunctionImport Name="WaiterList" ReturnType="Collection(KOTTabModal.WaiterList_Result)">
+          </FunctionImport>
+          <FunctionImport Name="UpdateTableStatus">
+            <Parameter Name="TableId" Mode="In" Type="Int32" />
+            <Parameter Name="TableStatus" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllItems1" ReturnType="Collection(KOTTabModal.GetAllItems1_Result)" >
+          <Parameter Name="tableId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchItem" ReturnType="Collection(KOTTabModal.SearchItem_Result1)">
+            <Parameter Name="ItemName" Mode="In" Type="String" />
+            <Parameter Name="tableId" Mode="In" Type="String" />
+            <Parameter Name="itemGroupId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="KOTCounterList" ReturnType="Collection(KOTTabModal.KOTCounterList_Result)" />
+          <FunctionImport Name="FoodAreaList" ReturnType="Collection(KOTTabModal.FoodAreaList_Result)" />
+          <FunctionImport Name="KOTCATList" ReturnType="Collection(KOTTabModal.KOTCATList_Result)" />
+          <FunctionImport Name="SearchOccupiedTables" ReturnType="Collection(KOTTabModal.SearchOccupiedTables_Result)">
+          <Parameter Name="term" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPaymentables" ReturnType="Collection(KOTTabModal.SearchPaymentables_Result)">
+          <Parameter Name="term" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchVacantTables" ReturnType="Collection(KOTTabModal.SearchVacantTables_Result)">
+          <Parameter Name="term" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ItemMenuGroups" ReturnType="Collection(KOTTabModal.ItemMenuGroups_Result)" />
+          <FunctionImport Name="AuthenticateUser" ReturnType="Collection(KOTTabModal.AuthenticateUser_Result3)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="AuthenticateUser_Result">
+          <Property Type="String" Name="UserCode" Nullable="false" MaxLength="12" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="Pwd" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="EmailID" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="DEPTID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VacantTables_Result">
+          <Property Type="Int32" Name="TBLID" Nullable="false" />
+          <Property Type="String" Name="TBLName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="InActive" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="PCATID" Nullable="true" />
+          <Property Type="String" Name="TBLGROUP" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DISPTBLNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TblStatus" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="NOKOT" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="FOODAREAID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="OccupiedTableList_Result">
+          <Property Type="Int32" Name="TBLID" Nullable="false" />
+          <Property Type="String" Name="TBLName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="InActive" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="PCATID" Nullable="true" />
+          <Property Type="String" Name="TBLGROUP" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DISPTBLNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TblStatus" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="NOKOT" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="FOODAREAID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PaymentTableList_Result">
+          <Property Type="Int32" Name="TBLID" Nullable="false" />
+          <Property Type="String" Name="TBLName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="InActive" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="PCATID" Nullable="true" />
+          <Property Type="String" Name="TBLGROUP" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DISPTBLNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TblStatus" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="NOKOT" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="FOODAREAID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAllItems_Result">
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="UOMID" Nullable="false" />
+          <Property Type="Int32" Name="ItemGroupID" Nullable="false" />
+          <Property Type="String" Name="InActive" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="NonStkable" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="BillingItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="PurchaseItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="BOMItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ItemDesc" Nullable="true" MaxLength="250" />
+          <Property Type="Binary" Name="ImgPrint" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="MOQ" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="ROL" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="ROQ" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="String" Name="ROLITEM" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="MAXLEVEL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="MINLEVEL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="String" Name="SLOC" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ItemDispName" Nullable="false" MaxLength="153" />
+          <Property Type="Int32" Name="KCATID" Nullable="true" />
+          <Property Type="Int32" Name="BCATID" Nullable="true" />
+          <Property Type="String" Name="MenuItem" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="InvItem" Nullable="false" MaxLength="1" />
+          <Property Type="Decimal" Name="CONVFACT" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="String" Name="TempItemName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="KGITEM" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="PARCELITEM" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="ITEMPARCELAMT" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="PARCELGROUP" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SearchItem_Result">
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="UOMID" Nullable="false" />
+          <Property Type="Int32" Name="ItemGroupID" Nullable="false" />
+          <Property Type="String" Name="InActive" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="NonStkable" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="BillingItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="PurchaseItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="BOMItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ItemDesc" Nullable="true" MaxLength="250" />
+          <Property Type="Binary" Name="ImgPrint" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="MOQ" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="ROL" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="ROQ" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="String" Name="ROLITEM" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="MAXLEVEL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="MINLEVEL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="String" Name="SLOC" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ItemDispName" Nullable="false" MaxLength="153" />
+          <Property Type="Int32" Name="KCATID" Nullable="true" />
+          <Property Type="Int32" Name="BCATID" Nullable="true" />
+          <Property Type="String" Name="MenuItem" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="InvItem" Nullable="false" MaxLength="1" />
+          <Property Type="Decimal" Name="CONVFACT" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="String" Name="TempItemName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="KGITEM" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="PARCELITEM" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="ITEMPARCELAMT" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="PARCELGROUP" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="WaiterList_Result">
+          <Property Type="Int32" Name="WTRID" Nullable="false" />
+          <Property Type="String" Name="WTRName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="InActive" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="WTRCODE" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetAllItems1_Result">
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="UOMID" Nullable="false" />
+          <Property Type="Int32" Name="ItemGroupID" Nullable="false" />
+          <Property Type="String" Name="InActive" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="NonStkable" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="BillingItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="PurchaseItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="BOMItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ItemDesc" Nullable="true" MaxLength="250" />
+          <Property Type="Binary" Name="ImgPrint" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="MOQ" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="ROL" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="ROQ" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="String" Name="ROLITEM" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="MAXLEVEL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="MINLEVEL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="String" Name="SLOC" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ItemDispName" Nullable="false" MaxLength="153" />
+          <Property Type="Int32" Name="KCATID" Nullable="true" />
+          <Property Type="Int32" Name="BCATID" Nullable="true" />
+          <Property Type="String" Name="MenuItem" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="InvItem" Nullable="false" MaxLength="1" />
+          <Property Type="Decimal" Name="CONVFACT" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="String" Name="TempItemName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="KGITEM" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="PARCELITEM" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="ITEMPARCELAMT" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="PARCELGROUP" Nullable="true" />
+          <Property Type="Decimal" Name="ItemRate" Nullable="false" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="SearchItem_Result1">
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="UOMID" Nullable="false" />
+          <Property Type="Int32" Name="ItemGroupID" Nullable="false" />
+          <Property Type="String" Name="InActive" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="NonStkable" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="BillingItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="PurchaseItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="BOMItem" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ItemDesc" Nullable="true" MaxLength="250" />
+          <Property Type="Binary" Name="ImgPrint" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="MOQ" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="ROL" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="ROQ" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="String" Name="ROLITEM" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="MAXLEVEL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="MINLEVEL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="String" Name="SLOC" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ItemDispName" Nullable="false" MaxLength="153" />
+          <Property Type="Int32" Name="KCATID" Nullable="true" />
+          <Property Type="Int32" Name="BCATID" Nullable="true" />
+          <Property Type="String" Name="MenuItem" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="InvItem" Nullable="false" MaxLength="1" />
+          <Property Type="Decimal" Name="CONVFACT" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="String" Name="TempItemName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="KGITEM" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="PARCELITEM" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="ITEMPARCELAMT" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="PARCELGROUP" Nullable="true" />
+          <Property Type="Decimal" Name="ItemRate" Nullable="false" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="KOTCounterList_Result">
+          <Property Type="Int32" Name="KCATID" Nullable="false" />
+          <Property Type="String" Name="KCATName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="InActive" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="FoodAreaList_Result">
+          <Property Type="Decimal" Name="FoodAreaID" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="String" Name="FoodAreaName" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="KOTCATList_Result">
+          <Property Type="Int32" Name="KCATID" Nullable="false" />
+          <Property Type="String" Name="KCATName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchOccupiedTables_Result">
+          <Property Type="Int32" Name="TBLID" Nullable="false" />
+          <Property Type="String" Name="TBLName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchPaymentables_Result">
+          <Property Type="Int32" Name="TBLID" Nullable="false" />
+          <Property Type="String" Name="TBLName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchVacantTables_Result">
+          <Property Type="Int32" Name="TBLID" Nullable="false" />
+          <Property Type="String" Name="TBLName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="AuthenticateUser_Result1">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="AuthenticateUser_Result2">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="userType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="companyName" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="ItemMenuGroups_Result">
+          <Property Type="Int32" Name="ItemMenuGroupID" Nullable="false" />
+          <Property Type="String" Name="ItemMenuGroupCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Inactive" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="InactiveRem" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="AddedBy" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="AddedOn" Nullable="false" Precision="16" />
+          <Property Type="String" Name="ChangedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="ChangedOn" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="MENUORDER" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="AuthenticateUser_Result3">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="userType" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="companyName" Nullable="true" MaxLength="250" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="KOTTabModal" />
+        <Alias Key="Target" Value="KOTTabModal.Store" />
+        <EntityContainerMapping CdmEntityContainer="KOTTabModalContainer" StorageEntityContainer="KOTTabModalStoreContainer">
+          <FunctionImportMapping FunctionImportName="VacantTables" FunctionName="KOTTabModal.Store.VacantTables">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.VacantTables_Result">
+                <ScalarProperty Name="TBLID" ColumnName="TBLID" />
+                <ScalarProperty Name="TBLName" ColumnName="TBLName" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="PCATID" ColumnName="PCATID" />
+                <ScalarProperty Name="TBLGROUP" ColumnName="TBLGROUP" />
+                <ScalarProperty Name="DISPTBLNAME" ColumnName="DISPTBLNAME" />
+                <ScalarProperty Name="TblStatus" ColumnName="TblStatus" />
+                <ScalarProperty Name="NOKOT" ColumnName="NOKOT" />
+                <ScalarProperty Name="FOODAREAID" ColumnName="FOODAREAID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OccupiedTableList" FunctionName="KOTTabModal.Store.OccupiedTableList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.OccupiedTableList_Result">
+                <ScalarProperty Name="TBLID" ColumnName="TBLID" />
+                <ScalarProperty Name="TBLName" ColumnName="TBLName" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="PCATID" ColumnName="PCATID" />
+                <ScalarProperty Name="TBLGROUP" ColumnName="TBLGROUP" />
+                <ScalarProperty Name="DISPTBLNAME" ColumnName="DISPTBLNAME" />
+                <ScalarProperty Name="TblStatus" ColumnName="TblStatus" />
+                <ScalarProperty Name="NOKOT" ColumnName="NOKOT" />
+                <ScalarProperty Name="FOODAREAID" ColumnName="FOODAREAID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaymentTableList" FunctionName="KOTTabModal.Store.PaymentTableList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.PaymentTableList_Result">
+                <ScalarProperty Name="TBLID" ColumnName="TBLID" />
+                <ScalarProperty Name="TBLName" ColumnName="TBLName" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="PCATID" ColumnName="PCATID" />
+                <ScalarProperty Name="TBLGROUP" ColumnName="TBLGROUP" />
+                <ScalarProperty Name="DISPTBLNAME" ColumnName="DISPTBLNAME" />
+                <ScalarProperty Name="TblStatus" ColumnName="TblStatus" />
+                <ScalarProperty Name="NOKOT" ColumnName="NOKOT" />
+                <ScalarProperty Name="FOODAREAID" ColumnName="FOODAREAID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="WaiterList" FunctionName="KOTTabModal.Store.WaiterList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.WaiterList_Result">
+                <ScalarProperty Name="WTRID" ColumnName="WTRID" />
+                <ScalarProperty Name="WTRName" ColumnName="WTRName" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="WTRCODE" ColumnName="WTRCODE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateTableStatus" FunctionName="KOTTabModal.Store.UpdateTableStatus" />
+          <FunctionImportMapping FunctionImportName="GetAllItems1" FunctionName="KOTTabModal.Store.GetAllItems">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.GetAllItems1_Result">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UOMID" ColumnName="UOMID" />
+                <ScalarProperty Name="ItemGroupID" ColumnName="ItemGroupID" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="NonStkable" ColumnName="NonStkable" />
+                <ScalarProperty Name="BillingItem" ColumnName="BillingItem" />
+                <ScalarProperty Name="PurchaseItem" ColumnName="PurchaseItem" />
+                <ScalarProperty Name="BOMItem" ColumnName="BOMItem" />
+                <ScalarProperty Name="ItemDesc" ColumnName="ItemDesc" />
+                <ScalarProperty Name="ImgPrint" ColumnName="ImgPrint" />
+                <ScalarProperty Name="MOQ" ColumnName="MOQ" />
+                <ScalarProperty Name="ROL" ColumnName="ROL" />
+                <ScalarProperty Name="ROQ" ColumnName="ROQ" />
+                <ScalarProperty Name="ROLITEM" ColumnName="ROLITEM" />
+                <ScalarProperty Name="MAXLEVEL" ColumnName="MAXLEVEL" />
+                <ScalarProperty Name="MINLEVEL" ColumnName="MINLEVEL" />
+                <ScalarProperty Name="SLOC" ColumnName="SLOC" />
+                <ScalarProperty Name="ItemDispName" ColumnName="ItemDispName" />
+                <ScalarProperty Name="KCATID" ColumnName="KCATID" />
+                <ScalarProperty Name="BCATID" ColumnName="BCATID" />
+                <ScalarProperty Name="MenuItem" ColumnName="MenuItem" />
+                <ScalarProperty Name="InvItem" ColumnName="InvItem" />
+                <ScalarProperty Name="CONVFACT" ColumnName="CONVFACT" />
+                <ScalarProperty Name="TempItemName" ColumnName="TempItemName" />
+                <ScalarProperty Name="KGITEM" ColumnName="KGITEM" />
+                <ScalarProperty Name="PARCELITEM" ColumnName="PARCELITEM" />
+                <ScalarProperty Name="ITEMPARCELAMT" ColumnName="ITEMPARCELAMT" />
+                <ScalarProperty Name="PARCELGROUP" ColumnName="PARCELGROUP" />
+                <ScalarProperty Name="ItemRate" ColumnName="ItemRate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchItem" FunctionName="KOTTabModal.Store.SearchItem">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.SearchItem_Result1">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UOMID" ColumnName="UOMID" />
+                <ScalarProperty Name="ItemGroupID" ColumnName="ItemGroupID" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="NonStkable" ColumnName="NonStkable" />
+                <ScalarProperty Name="BillingItem" ColumnName="BillingItem" />
+                <ScalarProperty Name="PurchaseItem" ColumnName="PurchaseItem" />
+                <ScalarProperty Name="BOMItem" ColumnName="BOMItem" />
+                <ScalarProperty Name="ItemDesc" ColumnName="ItemDesc" />
+                <ScalarProperty Name="ImgPrint" ColumnName="ImgPrint" />
+                <ScalarProperty Name="MOQ" ColumnName="MOQ" />
+                <ScalarProperty Name="ROL" ColumnName="ROL" />
+                <ScalarProperty Name="ROQ" ColumnName="ROQ" />
+                <ScalarProperty Name="ROLITEM" ColumnName="ROLITEM" />
+                <ScalarProperty Name="MAXLEVEL" ColumnName="MAXLEVEL" />
+                <ScalarProperty Name="MINLEVEL" ColumnName="MINLEVEL" />
+                <ScalarProperty Name="SLOC" ColumnName="SLOC" />
+                <ScalarProperty Name="ItemDispName" ColumnName="ItemDispName" />
+                <ScalarProperty Name="KCATID" ColumnName="KCATID" />
+                <ScalarProperty Name="BCATID" ColumnName="BCATID" />
+                <ScalarProperty Name="MenuItem" ColumnName="MenuItem" />
+                <ScalarProperty Name="InvItem" ColumnName="InvItem" />
+                <ScalarProperty Name="CONVFACT" ColumnName="CONVFACT" />
+                <ScalarProperty Name="TempItemName" ColumnName="TempItemName" />
+                <ScalarProperty Name="KGITEM" ColumnName="KGITEM" />
+                <ScalarProperty Name="PARCELITEM" ColumnName="PARCELITEM" />
+                <ScalarProperty Name="ITEMPARCELAMT" ColumnName="ITEMPARCELAMT" />
+                <ScalarProperty Name="PARCELGROUP" ColumnName="PARCELGROUP" />
+                <ScalarProperty Name="ItemRate" ColumnName="ItemRate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="KOTCounterList" FunctionName="KOTTabModal.Store.KOTCounterList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.KOTCounterList_Result">
+                <ScalarProperty Name="KCATID" ColumnName="KCATID" />
+                <ScalarProperty Name="KCATName" ColumnName="KCATName" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FoodAreaList" FunctionName="KOTTabModal.Store.FoodAreaList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.FoodAreaList_Result">
+                <ScalarProperty Name="FoodAreaID" ColumnName="FoodAreaID" />
+                <ScalarProperty Name="FoodAreaName" ColumnName="FoodAreaName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="KOTCATList" FunctionName="KOTTabModal.Store.KOTCATList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.KOTCATList_Result">
+                <ScalarProperty Name="KCATID" ColumnName="KCATID" />
+                <ScalarProperty Name="KCATName" ColumnName="KCATName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchOccupiedTables" FunctionName="KOTTabModal.Store.SearchOccupiedTables">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.SearchOccupiedTables_Result">
+                <ScalarProperty Name="TBLID" ColumnName="TBLID" />
+                <ScalarProperty Name="TBLName" ColumnName="TBLName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPaymentables" FunctionName="KOTTabModal.Store.SearchPaymentables">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.SearchPaymentables_Result">
+                <ScalarProperty Name="TBLID" ColumnName="TBLID" />
+                <ScalarProperty Name="TBLName" ColumnName="TBLName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchVacantTables" FunctionName="KOTTabModal.Store.SearchVacantTables">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.SearchVacantTables_Result">
+                <ScalarProperty Name="TBLID" ColumnName="TBLID" />
+                <ScalarProperty Name="TBLName" ColumnName="TBLName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ItemMenuGroups" FunctionName="KOTTabModal.Store.ItemMenuGroups">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.ItemMenuGroups_Result">
+                <ScalarProperty Name="ItemMenuGroupID" ColumnName="ItemMenuGroupID" />
+                <ScalarProperty Name="ItemMenuGroupCode" ColumnName="ItemMenuGroupCode" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="InactiveRem" ColumnName="InactiveRem" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+                <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+                <ScalarProperty Name="MENUORDER" ColumnName="MENUORDER" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AuthenticateUser" FunctionName="KOTTabModal.Store.AuthenticateUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KOTTabModal.AuthenticateUser_Result3">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
