@@ -24,7 +24,7 @@ namespace KOTTab.Controllers
 
             SqlConnection connection = new SqlConnection(connectionString);
 
-            String query2 = "update TrnDtlKOT set KOTQty = KOTQty - "+quantityNo+", KOTAmt = (KOTQty - "+quantityNo+") * KOTRate , QtyCancelled = '"+quantityNo+"' where KOTNO = '"+KOTNO+"' and  ItemID ='"+itemId+"' ";
+            String query2 = "update TrnDtlKOT set KOTAmt = (KOTQty - " + quantityNo + ") * KOTRate , QtyCancelled = QtyCancelled + '" + quantityNo + "' where KOTNO = '" + KOTNO + "' and  ItemID ='" + itemId + "' ";
             try
             {
                 SqlCommand cmd = new SqlCommand(query2, connection);

@@ -12,5 +12,7 @@ namespace KOTTab.BusinessEntities
         public String AdditionalInstructions { get; set; }
         public int KOTCATID { get; set; }
 
+        public int SlNo { get; set; }
+
     }
 }

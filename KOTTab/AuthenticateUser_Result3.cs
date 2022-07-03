@@ -17,5 +17,6 @@ namespace KOTTab
         public string UserName { get; set; }
         public string userType { get; set; }
         public string companyName { get; set; }
+        public Nullable<int> TABNO { get; set; }
     }
 }

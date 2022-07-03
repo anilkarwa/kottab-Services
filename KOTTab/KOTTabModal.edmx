@@ -307,6 +307,7 @@
           <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="userType" Nullable="false" MaxLength="12" />
           <Property Type="String" Name="companyName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="TABNO" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -517,6 +518,7 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="userType" ColumnName="userType" />
                 <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="TABNO" ColumnName="TABNO" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

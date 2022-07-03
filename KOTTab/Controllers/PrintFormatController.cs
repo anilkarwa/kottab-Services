@@ -43,6 +43,10 @@ namespace KOTTab.Controllers
                     printFormat.lineBreakOnTop = Convert.ToInt32(reader.GetString(6));
 
                     printFormat.lineBreakOnBottom = Convert.ToInt32(reader.GetString(7));
+
+                    printFormat.counterPrint = reader.GetString(8);
+
+                    printFormat.counterPrintPath = reader.GetString(9);
                 }
 
             }
@@ -62,7 +66,7 @@ namespace KOTTab.Controllers
         {
             Boolean valid = false;
             SqlConnection connection = new SqlConnection(connectionString);
-            String query = "update MstKOTPrintFormat set CompanyName = '"+printFormat.companyName+ "', NormalPrint ='"+printFormat.normalPrint+ "', RePrint = '"+printFormat.rePrint+ "',CancelPrint = '"+printFormat.cancelledPrint+ "', IsCompanyNamePrintable = '"+printFormat.showCompanyName+ "', LineBreakOnTop= '"+printFormat.lineBreakOnTop+ "', LineBreakOnBottom = '"+printFormat.lineBreakOnBottom+"' where id = 1 ";
+            String query = "update MstKOTPrintFormat set CompanyName = '"+printFormat.companyName+ "', NormalPrint ='"+printFormat.normalPrint+ "', RePrint = '"+printFormat.rePrint+ "',CancelPrint = '"+printFormat.cancelledPrint+ "', IsCompanyNamePrintable = '"+printFormat.showCompanyName+ "', LineBreakOnTop= '"+printFormat.lineBreakOnTop+ "', LineBreakOnBottom = '"+printFormat.lineBreakOnBottom+"', CounterPrint = '"+printFormat.counterPrint+"', CounterPrintPath = '"+printFormat.counterPrintPath+"' where id = 1 ";
             SqlCommand cmd = new SqlCommand(query, connection);
             try
             {

@@ -15,5 +15,8 @@ namespace KOTTab.BusinessEntities
         public String showCompanyName { get; set; }
         public int lineBreakOnTop { get; set; }
         public int lineBreakOnBottom { get; set; }
+
+        public String counterPrint { get; set; }
+        public String counterPrintPath { get; set; }
     }
 }

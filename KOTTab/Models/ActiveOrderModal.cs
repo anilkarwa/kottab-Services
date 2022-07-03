@@ -51,26 +51,29 @@ namespace KOTTab.Models
             var itemList = new List<KOTOrderItems>();
             for (int i = 0; i < orderList.Count; i++)
             {
-                String query2 = "select d.*,i.itemName,i.KCATID from TrnDtlKOT as d, MstItem as i where KOTNO='" + orderList[i].KOTNO + "' and d.ItemID= i.ItemID order by  d.SlNO";
+                String query2 = "select d.*, i.itemName,i.KCATID, (d.KOTQty - d.QtyCancelled) as KOTActiveQty from TrnDtlKOT as d, MstItem as i where KOTNO='" + orderList[i].KOTNO + "' and d.ItemID= i.ItemID  order by  d.SlNO";
                 SqlCommand cmd2 = new SqlCommand(query2, connection);
                 try
                 {
-                    
+
                     connection.Open();
                     SqlDataReader reader = cmd2.ExecuteReader();
                     while (reader.Read())
                     {
-                        var itemData = new KOTOrderItems();
-                        itemData.KOTNO = reader.GetInt32(1);
-                        itemData.SlNo = reader.GetInt32(2);
-                        itemData.ItemId = reader.GetInt32(3);
-                        itemData.AdditionalInstructions = reader.GetString(4);
-                        itemData.KOTQuantity = (int)reader.GetDecimal(5);
-                        itemData.KOTRate = (int)reader.GetDecimal(6);
-                        itemData.KOTAmount = (int)reader.GetDecimal(7);
-                        itemData.ItemName = reader.GetString(10);
-                        itemData.KCATID = reader.GetInt32(11);
-                        itemList.Add(itemData);
+                        if (reader.GetDecimal(12) > 0)
+                        {
+                            var itemData = new KOTOrderItems();
+                            itemData.KOTNO = reader.GetInt32(1);
+                            itemData.SlNo = reader.GetInt32(2);
+                            itemData.ItemId = reader.GetInt32(3);
+                            itemData.AdditionalInstructions = reader.GetString(4);
+                            itemData.KOTQuantity = (int)reader.GetDecimal(5);
+                            itemData.KOTRate = (int)reader.GetDecimal(6);
+                            itemData.KOTAmount = (int)reader.GetDecimal(7);
+                            itemData.ItemName = reader.GetString(10);
+                            itemData.KCATID = reader.GetInt32(11);
+                            itemList.Add(itemData);
+                        }
 
                     }
                     orderData.ItemsList = itemList.ToArray();
