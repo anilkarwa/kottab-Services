@@ -27,9 +27,9 @@ namespace KOTTab.Controllers
         PrintFormat printFormat = new PrintFormat();
 
         [System.Web.Http.HttpGet]
-        public String printCancelledSingleItem(int KCATID,String KOTNO, String itemName, int cancelledQty, String tableName, int wtrId, int PAX)
+        public String printCancelledSingleItem(int userId, int KCATID,String KOTNO, String itemName, int cancelledQty, String tableName, int wtrId, int PAX)
         {
-            
+            printUser = userId;
             printItemName = itemName; printTableName = tableName;printKOTNO = KOTNO;
             printKCATID = KCATID; printCancelledQty = cancelledQty; printWtrId = wtrId; printPAX = PAX;
 
@@ -77,7 +77,7 @@ namespace KOTTab.Controllers
             {
 
 
-                String query2 = "select PrntPath1,PrntCopy from MstKCatPrnTablet where KCATID = " + printKCATID + "";
+                String query2 = "select PrntPath1,PrntCopy from MstKCatPrnTablet where FoodAreaID = (select FoodAreaID from mstuser where USERID = " + printUser + ") AND KCATID = " + printKCATID + "";
                 SqlCommand cmd2 = new SqlCommand(query2, connection);
                 connection.Open();
                 SqlDataReader reader = cmd2.ExecuteReader();

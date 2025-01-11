@@ -32,8 +32,9 @@ namespace KOTTab.Controllers
         string connectionString = ConfigurationManager.ConnectionStrings["DBConStr"].ConnectionString;
 
         [System.Web.Http.HttpGet]
-        public String printAllKOT(String tableId, String print, String reprint, String cancelled, String cap)
+        public String printAllKOT(int userId, String tableId, String print, String reprint, String cancelled, String cap)
         {
+            printUser = userId;
             isprint = print;
             isreprint = reprint;
             iscancelled = cancelled;
@@ -203,7 +204,7 @@ namespace KOTTab.Controllers
                 {
 
 
-                    String query3 = "select PrntPath1,PrntCopy, PrntPath2, PrntCopy2, kotTitle, kotTitle2 from MstKCatPrnTablet where KCATID = " + printObject.Keys.ElementAt(i) + "";
+                    String query3 = "select PrntPath1,PrntCopy, PrntPath2, PrntCopy2, kotTitle, kotTitle2 from MstKCatPrnTablet where FoodAreaID = (select FoodAreaID from mstuser where USERID = " + printUser + ") AND KCATID = " + printObject.Keys.ElementAt(i) + "";
                     SqlCommand cmd = new SqlCommand(query3, connection);
                     connection.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
