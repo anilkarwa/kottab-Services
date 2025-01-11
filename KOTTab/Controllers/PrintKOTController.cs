@@ -20,7 +20,7 @@ namespace KOTTab.Controllers
 
         private Font printFont;
         public String printPath = "", printPath2 = "", kotTitle = "", kotTitle2 = "";
-        public int printCopy = 0, printCopy2 = 0, printingIndex = -1, printerNumber = 1;
+        public int printCopy = 0, printCopy2 = 0, printingIndex = -1, printerNumber = 1, printUser = 0;
         Boolean isCounterCopy = false;
         PrintEntity printerPrintData = new PrintEntity();
         List<PrintEntity> printerPrintDataList = new List<PrintEntity>();

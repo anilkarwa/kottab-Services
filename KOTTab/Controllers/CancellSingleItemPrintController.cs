@@ -20,7 +20,7 @@ namespace KOTTab.Controllers
         String valid = "false";
         string connectionString = ConfigurationManager.ConnectionStrings["DBConStr"].ConnectionString;
         String printItemName, printTableName, printKOTNO;
-        int printCancelledQty = 0, printWtrId = 0, printPAX = 0, printKCATID;
+        int printCancelledQty = 0, printWtrId = 0, printPAX = 0, printKCATID, printUser = 0;
         private Font printFont;
         public String printPath = "";
         public int printCopy = 0, printingIndex = -1;
