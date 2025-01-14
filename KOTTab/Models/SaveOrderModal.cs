@@ -5,7 +5,6 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-
 namespace KOTTab.Models
 {
     public class SaveOrderModal
@@ -18,19 +17,47 @@ namespace KOTTab.Models
             String valid = "false";
             SqlConnection connection = new SqlConnection(connectionString);
 
-            //var smalldate = saveorder.KOTDate.ToString("yyyy-MM-dd hh:mm:ss");
+            String query = "insert into TrnHdrKOT (kotNo,KotDate, Cancelled,TblID,WtrID,AddedBy," +
+                "TimeOfKot,AddedOn,Billed,NoOfPax) values(" +
+                "(select isnull(max(kotno),0)+1 from trnhdrkot h where h.kotdate = '" + saveorder.KOTDate + "')," +
+                "'" + saveorder.KOTDate + "'," +
+                "'N'," +
+                "'" + saveorder.TableId + "'," +
+                "'" + saveorder.WaiterId + "'," +
+                "'" + saveorder.AddedBy + "'," +
+                "'" + saveorder.TimeOfKOT + "'," +
+                "'" + saveorder.AddedDateTime + "'," +
+                "'N'," +
+                "'" + saveorder.PAX + "')";
 
-            String query = "insert into TrnHdrKOT values('" + saveorder.KOTDate + "','N','" + saveorder.TableId + "','" + saveorder.WaiterId + "','" + saveorder.AddedBy + "','" + saveorder.TimeOfKOT + "','" + saveorder.AddedDateTime + "','N','-','" + saveorder.PAX + "') SELECT SCOPE_IDENTITY()";
+           
             SqlCommand cmd = new SqlCommand(query, connection);
             try
             {
                 connection.Open();
-                insertId = (int)(decimal)cmd.ExecuteScalar();
+                cmd.ExecuteScalar();
                 valid = "true";
             }
             catch (Exception ex)
             {
-                valid = "false";
+                valid = ex.ToString() + query;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            SqlCommand cmd3 = new SqlCommand("Select Max(KOTNO) From TrnHdrKOT", connection);
+            try
+            {
+                connection.Open();
+                insertId = Convert.ToInt32(cmd3.ExecuteScalar());
+                valid = "true";
+            }
+            catch (Exception ex)
+            {
+                valid = ex.ToString() + "max no";
             }
             finally
             {
@@ -40,18 +67,25 @@ namespace KOTTab.Models
 
             for (int i = 0; i < saveorder.ItemsList.Length; i++)
             {
-                String query2 = "insert into TrnDtlKOT values('" + insertId + "','" + saveorder.ItemsList[i].SlNo + "','" + saveorder.ItemsList[i].ItemId + "','" + saveorder.ItemsList[i].AdditionalInstructions + "','" + saveorder.ItemsList[i].KOTQuantity + "','" + saveorder.ItemsList[i].KOTRate + "','" + saveorder.ItemsList[i].KOTAmount + "',0.00,0.00)";
-                SqlCommand cmd2 = new SqlCommand(query2, connection);
+                String query2 = "insert into TrnDtlKOT(KotID, slno, " +
+                    "Itemid,itemextrainfo,Remarks, " +
+                    "kotqty, kotrate,kotamt) values('"
+                    + insertId + "','" + saveorder.ItemsList[i].SlNo +
+                    "','" + saveorder.ItemsList[i].ItemId + "','" + saveorder.ItemsList[i].AdditionalInstructions + 
+                    "','','" + saveorder.ItemsList[i].KOTQuantity + "','" + saveorder.ItemsList[i].KOTRate + "','" +
+                    saveorder.ItemsList[i].KOTAmount + "')";
 
+
+                SqlCommand cmd2 = new SqlCommand(query2, connection);
                 try
                 {
                     connection.Open();
                     cmd2.ExecuteNonQuery();
                     valid = "true";
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    valid = "false";
+                    valid = ex.ToString() + query2;
                 }
                 finally
                 {
